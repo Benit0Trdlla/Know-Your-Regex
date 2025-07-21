@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata = {
   title: "Know Your Regex",
   description: "Assistant AI for Regex",
+  icons: {
+    icon: '/regex.svg',
+  },
 };
 
 export default function RootLayout({ children }) {
