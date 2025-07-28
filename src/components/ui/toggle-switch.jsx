@@ -1,7 +1,11 @@
 'use client'
-import { useState } from "react"
+import { useQueryState } from 'nuqs'
 function ToggleSwitch() {
-    const [activeOption, setActiveOption] = useState("encontrar")
+    const [activeOption, setActiveOption] = useQueryState("type", {
+        defaultValue: '',
+        shallow: false
+        // history: 'push'
+    })
     return (
         <>
             <div className="relative bg-inherit rounded-full border-1 border-gray p-0.5 m-3 w-48">
