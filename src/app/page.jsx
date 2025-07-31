@@ -55,7 +55,7 @@ export default function Home() {
             placeholder="Say something..."
             onChange={handleInputChange}
           /> */}
-          <AIChatInput />
+          <AIChatInput input={input} onChange={handleInputChange} />
         </form>
       </div>
     </div>

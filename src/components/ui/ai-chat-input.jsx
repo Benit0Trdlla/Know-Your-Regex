@@ -3,22 +3,23 @@ import * as React from "react"
 import { useState, useEffect, useRef } from "react";
 import { Paperclip, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { ToggleSwitch } from "./toggle-switch";
 
 const PLACEHOLDERS = [
     "Encuentra esta regex",
     "TEST",
 ];
 
-const AIChatInput = () => {
+const AIChatInput = ({ input, onChange }) => {
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [isActive, setIsActive] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+    // const [input, setinput] = useState("");
     const wrapperRef = useRef(null);
 
     // Cycle placeholder text when input is inactive
     useEffect(() => {
-        if (isActive || inputValue) return;
+        if (isActive || input) return;
 
         const interval = setInterval(() => {
             setShowPlaceholder(false);
@@ -29,7 +30,7 @@ const AIChatInput = () => {
         }, 3000);
 
         return () => clearInterval(interval);
-    }, [isActive, inputValue]);
+    }, [isActive, input]);
 
     // Close input when clicking outside
     useEffect(() => {
@@ -38,13 +39,13 @@ const AIChatInput = () => {
                 wrapperRef.current &&
                 !wrapperRef.current.contains(event.target)
             ) {
-                if (!inputValue) setIsActive(false);
+                if (!input) setIsActive(false);
             }
         };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [inputValue]);
+    }, [input]);
 
     const handleActivate = () => setIsActive(true);
 
@@ -84,6 +85,9 @@ const AIChatInput = () => {
 
     return (
         <div className="fixed bottom-0 w-full max-w-md p-2 mb-8">
+            <div className="flex items-center justify-center">
+                <ToggleSwitch />
+            </div>
             <motion.div
                 ref={wrapperRef}
                 className="w-full max-w-3xl"
@@ -107,15 +111,15 @@ const AIChatInput = () => {
                         <div className="relative flex-1">
                             <input
                                 type="text"
-                                value={inputValue}
-                                onChange={(e) => setInputValue(e.target.value)}
+                                value={input}
+                                onChange={onChange}
                                 className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal"
                                 style={{ position: "relative", zIndex: 1 }}
                                 onFocus={handleActivate}
                             />
                             <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
                                 <AnimatePresence mode="wait">
-                                    {showPlaceholder && !isActive && !inputValue && (
+                                    {showPlaceholder && !isActive && !input && (
                                         <motion.span
                                             key={placeholderIndex}
                                             className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 select-none pointer-events-none"
@@ -146,14 +150,14 @@ const AIChatInput = () => {
                                 </AnimatePresence>
                             </div>
                         </div>
-                        <button
+                        {/* <button
                             className="flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center"
                             title="Send"
                             type="button"
                             tabIndex={-1}
                         >
                             <Send size={18} />
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </motion.div>
