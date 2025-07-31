@@ -83,7 +83,7 @@ const AIChatInput = () => {
     };
 
     return (
-        <div className="w-full flex justify-center items-center text-black dark:text-white">
+        <div className="fixed bottom-0 w-full max-w-md p-2 mb-8">
             <motion.div
                 ref={wrapperRef}
                 className="w-full max-w-3xl"
