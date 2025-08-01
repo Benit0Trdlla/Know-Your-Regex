@@ -6,15 +6,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { ToggleSwitch } from "./toggle-switch";
 
 const PLACEHOLDERS = [
-    "Encuentra esta regex",
-    "TEST",
+    "Encuentra tu regex",
+    "Traduce tu regex",
 ];
 
 const AIChatInput = ({ input, onChange }) => {
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [isActive, setIsActive] = useState(false);
-    // const [input, setinput] = useState("");
     const wrapperRef = useRef(null);
 
     // Cycle placeholder text when input is inactive
@@ -84,7 +83,7 @@ const AIChatInput = ({ input, onChange }) => {
     };
 
     return (
-        <div className="fixed bottom-0 w-full max-w-md p-2 mb-8">
+        <div className="fixed bottom-0 w-full max-w-md p-2">
             <div className="flex items-center justify-center">
                 <ToggleSwitch />
             </div>
@@ -98,14 +97,14 @@ const AIChatInput = ({ input, onChange }) => {
                 <div className="flex flex-col items-stretch w-full h-full">
                     {/* Input Row */}
                     <div className="flex items-center gap-2 p-3 rounded-full bg-gray-200 max-w-3xl w-full border-gray-200 dark:bg-gray-800">
-                        <button
+                        {/* <button
                             className="p-3 rounded-full hover:bg-gray-100 transition"
                             title="Attach file"
                             type="button"
                             tabIndex={-1}
                         >
                             <Paperclip size={20} />
-                        </button>
+                        </button> */}
 
                         {/* Text Input & Placeholder */}
                         <div className="relative flex-1">
@@ -150,14 +149,14 @@ const AIChatInput = ({ input, onChange }) => {
                                 </AnimatePresence>
                             </div>
                         </div>
-                        {/* <button
+                        <button
                             className="flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center"
                             title="Send"
-                            type="button"
+                            type="submit"
                             tabIndex={-1}
                         >
                             <Send size={18} />
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             </motion.div>

@@ -5,11 +5,14 @@ import { convertToCoreMessages, streamText } from "ai";
 export const maxDuration = 30;
 
 export async function POST(req) {
-  const { messages } = await req.json();
+  const body = await req.json();
+  const { messages, type } = body;
+
+  console.log("Tipo seleccionado:", type);
 
   const result = streamText({
     model: google('gemini-2.0-flash'),
-    system: "Eres un asistente que ayuda a buscar o traducir expresiones regulares (Regex).",
+    system: `Eres un asistente que ayuda a buscar o traducir expresiones regulares (Regex). Dime en que modo estas: ${type}`,
     messages: convertToCoreMessages(messages),
   });
 
