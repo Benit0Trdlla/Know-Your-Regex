@@ -60,7 +60,6 @@ export default function Home() {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit}>
         <form onSubmit={testFunction}>
           <AIChatInput input={input} onChange={handleInputChange} />
         </form>
