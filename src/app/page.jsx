@@ -18,6 +18,11 @@ export default function Home() {
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
   const testFunction = () => {
+    event.preventDefault();
+    console.log('HEYY', activeOption);
+    handleSubmit();
+    console.log('IA SENDT MESSAGE', activeOption);
+  };
 
   return (
     <div className="flex flex-col h-screen my-auto items-center">
