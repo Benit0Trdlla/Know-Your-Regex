@@ -15,7 +15,7 @@ export default function Home() {
   const [activeOption] = useQueryState("type");
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    body: { type: activeOption }
+    body: { type: activeOption ? activeOption : 'encontrar' },
   });
 
   return (

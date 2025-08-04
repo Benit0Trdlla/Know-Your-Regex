@@ -4,6 +4,7 @@ function ToggleSwitch() {
     const [activeOption, setActiveOption] = useQueryState("type", {
         defaultValue: '',
         shallow: false,
+        // scroll: false,
         // history: 'push'
     });
     
