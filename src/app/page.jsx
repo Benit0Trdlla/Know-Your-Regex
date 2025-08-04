@@ -17,6 +17,7 @@ export default function Home() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
+  const testFunction = () => {
 
   return (
     <div className="flex flex-col h-screen my-auto items-center">
@@ -55,6 +56,7 @@ export default function Home() {
         </div>
 
         <form onSubmit={handleSubmit}>
+        <form onSubmit={testFunction}>
           <AIChatInput input={input} onChange={handleInputChange} />
         </form>
       </div>
