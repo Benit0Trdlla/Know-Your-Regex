@@ -17,11 +17,10 @@ export default function Home() {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
-  const testFunction = () => {
+
+  const sendQuestion = () => {
     event.preventDefault();
-    console.log('HEYY', activeOption);
     handleSubmit();
-    console.log('IA SENDT MESSAGE', activeOption);
   };
 
   return (
@@ -60,7 +59,7 @@ export default function Home() {
           ))}
         </div>
 
-        <form onSubmit={testFunction}>
+        <form onSubmit={sendQuestion}>
           <AIChatInput input={input} onChange={handleInputChange} />
         </form>
       </div>
