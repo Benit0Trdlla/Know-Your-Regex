@@ -3,7 +3,7 @@ import { useChat } from '@ai-sdk/react';
 import { useQueryState } from 'nuqs'
 import { AIChatInput } from "@/components/ui/ai-chat-input"
 import { Navbar } from '@/components/ui/navbar';
-
+import { Markdown } from '@/components/markdown';
 export default function Home() {
   const [activeOption] = useQueryState("type");
 
@@ -28,7 +28,11 @@ export default function Home() {
               {message.parts.map((part, i) => {
                 switch (part.type) {
                   case 'text':
-                    return <div key={`${message.id}-${i}`}>{part.text}</div>;
+                    return (
+                      <Markdown key={`${message.id}-${i}`} children={part.text}>
+                        {part.text}
+                      </Markdown>
+                    )
                 }
               })}
             </div>
