@@ -3,7 +3,7 @@ import { useChat } from '@ai-sdk/react';
 import { useQueryState } from 'nuqs'
 import { AIChatInput } from "@/components/ui/ai-chat-input"
 import { Navbar } from '@/components/ui/navbar';
-import { Markdown } from '@/components/markdown';
+import { AIChat } from '@/components/ui/ai-chat';
 export default function Home() {
   const [activeOption] = useQueryState("type");
 
@@ -21,23 +21,7 @@ export default function Home() {
       <Navbar />
 
       <div className="flex flex-col w-full max-w-md py-10 mx-auto stretch">
-        <div className='h-100 overflow-y-scroll px-6 sm:px-0'>
-          {messages.map(message => (
-            <div key={message.id} className="whitespace-pre-wrap">
-              {message.role === 'user' ? 'User: ' : 'AI: '}
-              {message.parts.map((part, i) => {
-                switch (part.type) {
-                  case 'text':
-                    return (
-                      <Markdown key={`${message.id}-${i}`} children={part.text}>
-                        {part.text}
-                      </Markdown>
-                    )
-                }
-              })}
-            </div>
-          ))}
-        </div>
+        <AIChat messages={messages} />
 
         <form onSubmit={handleSubmit}>
           <AIChatInput input={input} onChange={handleInputChange} />
