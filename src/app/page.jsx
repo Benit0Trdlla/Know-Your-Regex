@@ -11,10 +11,10 @@ export default function Home() {
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
 
-  const sendQuestion = () => {
-    event.preventDefault();
-    handleSubmit();
-  };
+  // const sendQuestion = () => {
+  //   event.preventDefault();
+  //   handleSubmit();
+  // };
 
   return (
     <div className="flex flex-col h-screen my-auto items-center">
@@ -39,7 +39,7 @@ export default function Home() {
           ))}
         </div>
 
-        <form onSubmit={sendQuestion}>
+        <form onSubmit={handleSubmit}>
           <AIChatInput input={input} onChange={handleInputChange} />
         </form>
       </div>

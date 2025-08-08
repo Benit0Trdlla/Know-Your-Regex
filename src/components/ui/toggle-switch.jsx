@@ -18,6 +18,7 @@ function ToggleSwitch() {
 
                 <div className="relative flex">
                     <button
+                        type='button'
                         onClick={() => setActiveOption("encontrar")}
                         className={`flex-1 py-2 px-4 text-sm text-center font-medium rounded-full transition-colors duration-300 ${activeOption === "encontrar" ? "text-white" : "text-gray-600 hover:text-gray-800"
                             }`}
@@ -25,6 +26,7 @@ function ToggleSwitch() {
                         Encontrar
                     </button>
                     <button
+                        type='button'
                         onClick={() => setActiveOption("traducir")}
                         className={`flex-1 py-2 px-4 text-sm text-center font-medium rounded-full transition-colors duration-300 ${activeOption === "traducir" ? "text-white" : "text-gray-600 hover:text-gray-800"
                             }`}
