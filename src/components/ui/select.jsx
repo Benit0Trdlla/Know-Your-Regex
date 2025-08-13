@@ -40,9 +40,9 @@ function SelectTrigger({
       )}
       {...props}>
       {children}
-      <SelectPrimitive.Icon asChild>
+      {/* <SelectPrimitive.Icon asChild>
         <ChevronDownIcon className="size-4 opacity-50" />
-      </SelectPrimitive.Icon>
+      </SelectPrimitive.Icon> */}
     </SelectPrimitive.Trigger>
   );
 }
@@ -103,9 +103,9 @@ function SelectItem({
       )}
       {...props}>
       <span className="absolute right-2 flex size-3.5 items-center justify-center">
-        <SelectPrimitive.ItemIndicator>
+        {/* <SelectPrimitive.ItemIndicator>
           <CheckIcon className="size-4" />
-        </SelectPrimitive.ItemIndicator>
+        </SelectPrimitive.ItemIndicator> */}
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
@@ -147,7 +147,7 @@ function SelectScrollDownButton({
       data-slot="select-scroll-down-button"
       className={cn("flex cursor-default items-center justify-center py-1", className)}
       {...props}>
-      <ChevronDownIcon className="size-4" />
+      {/* <ChevronDownIcon className="size-4" /> */}
     </SelectPrimitive.ScrollDownButton>
   );
 }
