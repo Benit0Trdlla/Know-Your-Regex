@@ -1,6 +1,9 @@
+'use client'
 import { ModeToggle } from "../ModeToggle"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { SettingsIcon } from "lucide-react"
+import { getLanguage, setLanguage } from "@/lib/language"
+import { useHidratationSolution } from "@/hooks/useHidratationSolution"
 function Navbar() {
     return (
         <div className="flex gap-3 items-center mt-6 sm:gap-5">
@@ -11,7 +14,7 @@ function Navbar() {
             <hr className="h-6 border-r-3" />
             <div className="hidden sm:flex items-center gap-2">
                 <ModeToggle />
-                <Select>
+                <Select onValueChange={(e) => setLanguage(e)}>
                     <SelectTrigger className="w-auto">
                         <SelectValue placeholder="ES" />
                     </SelectTrigger>
@@ -24,7 +27,7 @@ function Navbar() {
                 <span>v0.0.1</span>
             </div>
             <div className="flex sm:hidden items-center gap-2">
-                <Select>
+                <Select onValueChange={(value) => setLanguage(value)}>
                     <SelectTrigger className="w-auto">
                         <SettingsIcon className="size-5" />
                     </SelectTrigger>
