@@ -5,6 +5,8 @@ import { SettingsIcon } from "lucide-react"
 import { getLanguage, setLanguage } from "@/lib/language"
 import { useHidratationSolution } from "@/hooks/useHidratationSolution"
 function Navbar() {
+    const isClient = useHidratationSolution()
+    const language = getLanguage()
     return (
         <div className="flex gap-3 items-center mt-6 sm:gap-5">
             <div className="flex gap-2 items-center">
@@ -16,7 +18,7 @@ function Navbar() {
                 <ModeToggle />
                 <Select onValueChange={(e) => setLanguage(e)}>
                     <SelectTrigger className="w-auto">
-                        <SelectValue placeholder="ES" />
+                        <SelectValue placeholder={isClient ? language : '...'} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="ES">ES</SelectItem>
