@@ -1,18 +1,23 @@
 "use client"
 import * as React from "react"
 import { useState, useEffect, useRef } from "react";
-import { Paperclip, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ToggleSwitch } from "./toggle-switch";
 import { getLanguage } from "@/lib/language";
+import { useHidratationSolution } from "@/hooks/useHidratationSolution";
 
 
 const AIChatInput = ({ input, onChange }) => {
     let language = getLanguage();
+
+    const isClient = useHidratationSolution()
+
     const PLACEHOLDERS = [
-        `${language === 'ES' ? 'Escribe tu regex' : 'Write your regex'}`,
-        `${language === 'ES' ? 'Traduce tu regex' : 'Translate your regex'}`,
+        `${isClient && language === 'ES' ? 'Escribe tu regex' : 'Write your regex'}`,
+        `${isClient && language === 'ES' ? 'Traduce tu regex' : 'Translate your regex'}`,
     ];
+    
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [isActive, setIsActive] = useState(false);
