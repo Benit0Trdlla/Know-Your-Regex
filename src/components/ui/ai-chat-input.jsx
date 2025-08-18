@@ -4,13 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import { Paperclip, Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ToggleSwitch } from "./toggle-switch";
+import { getLanguage } from "@/lib/language";
 
-const PLACEHOLDERS = [
-    "Encuentra tu regex",
-    "Traduce tu regex",
-];
 
 const AIChatInput = ({ input, onChange }) => {
+    let language = getLanguage();
+    const PLACEHOLDERS = [
+        `${language === 'ES' ? 'Escribe tu regex' : 'Write your regex'}`,
+        `${language === 'ES' ? 'Traduce tu regex' : 'Translate your regex'}`,
+    ];
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [isActive, setIsActive] = useState(false);
