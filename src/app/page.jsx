@@ -7,7 +7,7 @@ import { AIChat } from '@/components/ui/ai-chat';
 export default function Home() {
   const [activeOption] = useQueryState("type");
 
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
 
@@ -19,12 +19,13 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen my-auto items-center">
       <Navbar />
+      {status}
 
       <div className="flex flex-col w-full max-w-md py-10 mx-auto stretch">
         <AIChat messages={messages} />
 
         <form onSubmit={handleSubmit}>
-          <AIChatInput input={input} onChange={handleInputChange} />
+          <AIChatInput input={input} onChange={handleInputChange} status={status} />
         </form>
       </div>
     </div>

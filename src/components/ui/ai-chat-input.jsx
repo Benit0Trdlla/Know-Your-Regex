@@ -8,7 +8,7 @@ import { getLanguage } from "@/lib/language";
 import { useHidratationSolution } from "@/hooks/useHidratationSolution";
 
 
-const AIChatInput = ({ input, onChange }) => {
+const AIChatInput = ({ input, onChange, status }) => {
     let language = getLanguage();
 
     const isClient = useHidratationSolution()
@@ -122,6 +122,7 @@ const AIChatInput = ({ input, onChange }) => {
                                 className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal"
                                 style={{ position: "relative", zIndex: 1 }}
                                 onFocus={handleActivate}
+                                disabled={status !== 'ready'}
                             />
                             <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
                                 <AnimatePresence mode="wait">
@@ -157,7 +158,7 @@ const AIChatInput = ({ input, onChange }) => {
                             </div>
                         </div>
                         <button
-                            className="flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center"
+                            className={`flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center ${status !== 'ready' ? 'opacity-50 cursor-not-allowed' : ''}`}
                             title="Send"
                             type="submit"
                             tabIndex={-1}
