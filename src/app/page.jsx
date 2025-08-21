@@ -1,29 +1,30 @@
 'use client';
 import { useChat } from '@ai-sdk/react';
 import { useQueryState } from 'nuqs'
+import { toast } from 'sonner'
 import { AIChatInput } from "@/components/ui/ai-chat-input"
 import { Navbar } from '@/components/ui/navbar';
 import { AIChat } from '@/components/ui/ai-chat';
+
 export default function Home() {
   const [activeOption] = useQueryState("type");
 
   const { messages, input, handleInputChange, handleSubmit, status } = useChat({
+    onError: () => toast.error('Su tarifa se ha agotado. Puede volver a intentarlo más tarde.'),
     body: { type: activeOption ? activeOption : 'encontrar' },
   });
 
-  // const sendQuestion = () => {
-  //   event.preventDefault();
-  //   handleSubmit();
-  // };
+  if (status === 'error') {
+    toast.error(status.message);
+  }
+
 
   return (
     <div className="flex flex-col h-screen my-auto items-center">
       <Navbar />
       {/* {status} */}
-
       <div className="flex flex-col w-full max-w-md pb-10 mt-6 mx-auto stretch">
         <AIChat messages={messages} />
-
         <form onSubmit={handleSubmit}>
           <AIChatInput input={input} onChange={handleInputChange} status={status} />
         </form>

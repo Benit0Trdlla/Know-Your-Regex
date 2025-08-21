@@ -1,5 +1,6 @@
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster, toast } from 'sonner'
 import "./globals.css";
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
           >
             {children}
+            <Toaster closeButton richColors/>
           </ThemeProvider>
         </NuqsAdapter>
       </body>
