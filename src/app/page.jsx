@@ -5,13 +5,18 @@ import { toast } from 'sonner'
 import { AIChatInput } from "@/components/ui/ai-chat-input"
 import { Navbar } from '@/components/ui/navbar';
 import { AIChat } from '@/components/ui/ai-chat';
+import { getLanguage } from '@/lib/language';
 
 export default function Home() {
   const [activeOption] = useQueryState("type");
+  const language = getLanguage();
 
   const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     onError: () => toast.error('Su tarifa se ha agotado. Puede volver a intentarlo más tarde.'),
-    body: { type: activeOption ? activeOption : 'encontrar' },
+    body: { 
+      type: activeOption ? activeOption : 'encontrar',
+      language
+    },
   });
 
   if (status === 'error') {
