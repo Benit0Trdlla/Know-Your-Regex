@@ -90,7 +90,7 @@ const AIChatInput = ({ input, onChange, status }) => {
     };
 
     return (
-        <div className="fixed bottom-0 w-full max-w-md p-2 mb-4">
+        <div className="sm:fixed flex flex-col flex-1 bottom-0 w-full max-w-md p-2 mb-4">
             <div className="flex items-center justify-center">
                 <ToggleSwitch />
             </div>
