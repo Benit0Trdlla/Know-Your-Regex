@@ -40,9 +40,9 @@ const items = [
   },
 ]
 
-export function AppSidebar() {
+export function AppSidebar({ ...props }) {
   return (
-    <Sidebar className={"fixed"}>
+    <Sidebar {...props}>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>

@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="es" suppressHydrationWarning>
       <body>
         <SidebarProvider defaultOpen={false}>
-          <AppSidebar />
+          <AppSidebar className="relative z-10"/>
           <NuqsAdapter>
             <ThemeProvider
               attribute="class"
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
               disableTransitionOnChange
             >
               {/* <SidebarTrigger /> */}
-              <div className='flex flex-1 justify-center items-center' style={{ overflow: 'hidden' }}>
+              <div className='flex flex-1 justify-center items-center sm:absolute sm:left-[30%] md:left-[35%] z-0 overflow-hidden'>
                 {children}
               </div>
               <Toaster closeButton richColors />

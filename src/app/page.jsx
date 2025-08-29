@@ -28,7 +28,7 @@ export default function Home() {
     <div className="flex flex-col h-screen my-auto items-center">
       <Navbar />
       {/* {status} */}
-      <div className="flex flex-col w-full max-w-md pb-10 mt-6 mx-auto stretch">
+      <div className="w-full max-w-md pb-10 mt-6 mx-auto stretch">
         <AIChat messages={messages} />
         <form onSubmit={handleSubmit}>
           <AIChatInput input={input} onChange={handleInputChange} status={status} />
