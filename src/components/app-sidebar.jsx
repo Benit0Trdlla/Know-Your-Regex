@@ -1,9 +1,15 @@
 'use client'
 import Link from 'next/link'
-import { Calendar, Home, Inbox, Search, Settings, Plus, Linkedin, Github, Globe } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings, Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +17,8 @@ import {
   SidebarFooter,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
   SidebarHeader,
   SidebarMenuButton,
   SidebarGroupAction,
@@ -105,41 +113,33 @@ export function AppSidebar({ ...props }) {
             </Dialog>
           </SidebarGroupAction>
         </SidebarGroup>
-        {/* <SidebarGroup>
-          <div className="flex align-center justify-center hover:cursor-pointer">
-            <Dialog>
-              <form>
-                <DialogTrigger asChild className="hover:cursor-pointer">
-                  <Button variant="outline"><Plus /></Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Guarda tu Regex</DialogTitle>
-                    <DialogDescription>
-                      Guarda aqui tu regex con su titulo para poder usarla en cualquier momento
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4">
-                    <div className="grid gap-3">
-                      <Label htmlFor="title-1">Titulo</Label>
-                      <Input id="title-1" name="title" placeholder="Titulo de tu regex" />
+
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <Collapsible defaultOpen className="group/collapsible">
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <div className="flex items-center justify-between gap-4">
+                      <SidebarGroupLabel>Titulo de tu regex</SidebarGroupLabel>
+                      <Button variant="ghost" size="icon" className="size-8">
+                        <ChevronsUpDown />
+                        <span className="sr-only">Toggle</span>
+                      </Button>
                     </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="regex-1">Regex</Label>
-                      <Input id="regex-1" name="regex" placeholder="^\d{2}-\d{2}-\d{4}$" />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant="outline">Cancelar</Button>
-                    </DialogClose>
-                    <Button type="submit">Guardar</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </form>
-            </Dialog>
-          </div>
-        </SidebarGroup> */}
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>Subitem 1</SidebarMenuSubItem>
+                      <SidebarMenuSubItem>Subitem 2</SidebarMenuSubItem>
+                      <SidebarMenuSubItem>Subitem 3</SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <hr className='w-11/12 mx-auto p-2' />
       <SidebarFooter className="mb-5">
