@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { Calendar, Home, Inbox, Search, Settings, Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
+import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -36,35 +36,6 @@ import {
   DialogTrigger,
   DialogFooter
 } from "@/components/ui/dialog"
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-]
 
 export function AppSidebar({ ...props }) {
   return (
@@ -120,7 +91,7 @@ export function AppSidebar({ ...props }) {
               <Collapsible defaultOpen className="group/collapsible">
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10">
                       <SidebarGroupLabel>Titulo de tu regex</SidebarGroupLabel>
                       <Button variant="ghost" size="icon" className="size-8">
                         <ChevronsUpDown />
@@ -131,8 +102,24 @@ export function AppSidebar({ ...props }) {
                   <CollapsibleContent>
                     <SidebarMenuSub>
                       <SidebarMenuSubItem>Subitem 1</SidebarMenuSubItem>
-                      <SidebarMenuSubItem>Subitem 2</SidebarMenuSubItem>
-                      <SidebarMenuSubItem>Subitem 3</SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+              <Collapsible className="group/collapsible">
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:bg-sidebar-foreground/10 hover:rounded-sm">
+                      <SidebarGroupLabel>Titulo de tu regex</SidebarGroupLabel>
+                      <Button variant="ghost" size="icon" className="size-8">
+                        <ChevronsUpDown />
+                        <span className="sr-only">Toggle</span>
+                      </Button>
+                    </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>Subitem 1</SidebarMenuSubItem>
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </SidebarMenuItem>
