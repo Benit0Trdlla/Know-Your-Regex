@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { useState } from "react"
 import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -38,6 +39,14 @@ import {
 } from "@/components/ui/dialog"
 
 export function AppSidebar({ ...props }) {
+  const [title, setTitle] = useState('');
+  const [regex, setRegex] = useState('');
+
+  const handleAddRegex = () => {
+    console.log('Title:', title);
+    console.log('Regex:', regex);
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -66,18 +75,18 @@ export function AppSidebar({ ...props }) {
                   <div className="grid gap-4">
                     <div className="grid gap-3">
                       <Label htmlFor="title-1">Titulo</Label>
-                      <Input id="title-1" name="title" placeholder="Titulo de tu regex" />
+                      <Input id="title-1" name="title" placeholder="Titulo de tu regex" onChange={(e) => setTitle(e.target.value)} value={title} />
                     </div>
                     <div className="grid gap-3">
                       <Label htmlFor="regex-1">Regex</Label>
-                      <Input id="regex-1" name="regex" placeholder="^\d{2}-\d{2}-\d{4}$" />
+                      <Input id="regex-1" name="regex" placeholder="^\d{2}-\d{2}-\d{4}$" onChange={(e) => setRegex(e.target.value)} value={regex} />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
                       <Button variant="outline">Cancelar</Button>
                     </DialogClose>
-                    <Button type="submit">Guardar</Button>
+                    <Button type="submit" onClick={handleAddRegex}>Guardar</Button>
                   </DialogFooter>
                 </DialogContent>
               </form>
