@@ -158,7 +158,7 @@ const AIChatInput = ({ input, onChange, status }) => {
                             </div>
                         </div>
                         <button
-                            className={`flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center ${status !== 'ready' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`flex items-center gap-1 bg-black hover:bg-gray-700  text-white p-3 rounded-full font-medium justify-center ${status !== 'ready' || input === '' ? 'opacity-50 cursor-not-allowed' : ''}`}
                             title="Send"
                             type="submit"
                             tabIndex={-1}
