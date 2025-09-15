@@ -1,6 +1,9 @@
 'use client'
 import Link from 'next/link'
 import { useState } from "react"
+import { getLanguage } from '@/lib/language'
+import { useHidratationSolution } from '@/hooks/useHidratationSolution'
+import { LANGUAGES } from '@/lib/consts'
 import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -39,8 +42,13 @@ import {
 } from "@/components/ui/dialog"
 
 export function AppSidebar({ ...props }) {
+  const language = getLanguage();
+  const isClient = useHidratationSolution();
+  
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
+
+  const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
   const handleAddRegex = () => {
     console.log('Title:', title);
@@ -58,7 +66,7 @@ export function AppSidebar({ ...props }) {
       <hr className="w-11/12 mx-auto" />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel >Tus regex</SidebarGroupLabel>
+          <SidebarGroupLabel>{isClient && LANGUAGES[language].SIDEBAR.LABELTITLE}</SidebarGroupLabel>
           <SidebarGroupAction title="Add Project">
             <Dialog>
               <DialogTrigger asChild className="hover:cursor-pointer">
@@ -67,26 +75,26 @@ export function AppSidebar({ ...props }) {
               <form>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
-                    <DialogTitle>Guarda tu Regex</DialogTitle>
+                    <DialogTitle>{SAVEREGEX_TITLE}</DialogTitle>
                     <DialogDescription>
-                      Guarda aqui tu regex con su titulo para poder usarla en cualquier momento
+                      {SAVEREGEX_SUBTITLE}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4">
                     <div className="grid gap-3">
-                      <Label htmlFor="title-1">Titulo</Label>
-                      <Input id="title-1" name="title" placeholder="Titulo de tu regex" onChange={(e) => setTitle(e.target.value)} value={title} />
+                      <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
+                      <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
                     </div>
                     <div className="grid gap-3">
-                      <Label htmlFor="regex-1">Regex</Label>
-                      <Input id="regex-1" name="regex" placeholder="^\d{2}-\d{2}-\d{4}$" onChange={(e) => setRegex(e.target.value)} value={regex} />
+                      <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
+                      <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
                     </div>
                   </div>
                   <DialogFooter>
                     <DialogClose asChild>
-                      <Button variant="outline">Cancelar</Button>
+                      <Button variant="outline">{BUTTON_CANCEL}</Button>
                     </DialogClose>
-                    <Button type="submit" onClick={handleAddRegex}>Guardar</Button>
+                    <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
                   </DialogFooter>
                 </DialogContent>
               </form>
