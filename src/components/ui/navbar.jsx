@@ -1,6 +1,8 @@
 'use client'
 import { ModeToggle } from "../ModeToggle"
 import { SettingsIcon } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+import { Spinner } from "../spinner"
 import { getLanguage, setLanguage } from "@/lib/language"
 import { useHidratationSolution } from "@/hooks/useHidratationSolution"
 import { SidebarTrigger } from "./sidebar"
@@ -28,7 +30,7 @@ function Navbar() {
                 <ModeToggle />
                 <Select onValueChange={(e) => setLanguageToggle(e)}>
                     <SelectTrigger className="w-auto">
-                        <SelectValue placeholder={isClient ? language : '...'} />
+                        <SelectValue placeholder={isClient ? language : <Spinner />} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="ES">ES</SelectItem>
