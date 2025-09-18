@@ -2,8 +2,9 @@
 import Link from 'next/link'
 import { useState } from "react"
 import { getLanguage } from '@/lib/language'
-import { useHidratationSolution } from '@/hooks/useHidratationSolution'
 import { LANGUAGES } from '@/lib/consts'
+import { saveRegex } from '@/lib/localstorage'
+import { useHidratationSolution } from '@/hooks/useHidratationSolution'
 import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -51,8 +52,13 @@ export function AppSidebar({ ...props }) {
   const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
   const handleAddRegex = () => {
-    console.log('Title:', title);
-    console.log('Regex:', regex);
+    const result = saveRegex(title, regex);
+
+
+    setTitle('');
+    setRegex('');
+
+    console.log('Regex saved successfully.');
   };
 
   return (
