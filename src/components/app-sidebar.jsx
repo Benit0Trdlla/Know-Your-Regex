@@ -48,12 +48,15 @@ export function AppSidebar({ ...props }) {
   
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
+  const [error, setError] = useState('');
 
   const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
   const handleAddRegex = () => {
     const result = saveRegex(title, regex);
 
+    if (result instanceof Error) setError(result.message);
+    else setError('Regex saved successfully.');
 
     setTitle('');
     setRegex('');
@@ -90,10 +93,12 @@ export function AppSidebar({ ...props }) {
                     <div className="grid gap-3">
                       <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
                       <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
+                      {error && <span className="text-red-500">{error}</span>}
                     </div>
                     <div className="grid gap-3">
                       <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
                       <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
+                      {error && <span className="text-red-500">{error}</span>}
                     </div>
                   </div>
                   <DialogFooter>
