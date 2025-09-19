@@ -1,6 +1,11 @@
 export const LANGUAGES = {
     EN: {
-        SIDEBAR:{
+        ALERT_MESSAGES: {
+            EMPTY_TITLE: 'Please enter the Regex title 😉',
+            EMPTY_REGEX: 'The Regex cannot be empty.',
+            SUCCESS: 'Regex saved successfully.'
+        },
+        SIDEBAR: {
             LABELTITLE: 'Your Regex'
         },
         MODAL_ADDREGEX: {
@@ -15,7 +20,12 @@ export const LANGUAGES = {
         }
     },
     ES: {
-        SIDEBAR:{
+        ALERT_MESSAGES: {
+            EMPTY_TITLE: 'Ingresa el titulo de la Regex, por favor 😉',
+            EMPTY_REGEX: 'La Regex no puede estar vacia',
+            SUCCESS: 'Regex guardada correctamente'
+        },
+        SIDEBAR: {
             LABELTITLE: 'Tus Regex'
         },
         MODAL_ADDREGEX: {
