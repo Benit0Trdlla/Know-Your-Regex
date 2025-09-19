@@ -45,7 +45,7 @@ import {
 export function AppSidebar({ ...props }) {
   const language = getLanguage();
   const isClient = useHidratationSolution();
-  
+
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
   const [error, setError] = useState('');
@@ -74,41 +74,39 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
       <hr className="w-11/12 mx-auto" />
       <SidebarContent>
-        <SidebarGroup>
+        <SidebarGroup className="relative flex w-full min-w-0 flex-row items-center justify-between p-2">
           <SidebarGroupLabel>{isClient && LANGUAGES[language].SIDEBAR.LABELTITLE}</SidebarGroupLabel>
-          <SidebarGroupAction title="Add Project">
+          <SidebarGroupAction asChild>
             <Dialog>
               <DialogTrigger asChild className="hover:cursor-pointer">
-                <Plus />
+                <Plus width={20} height={20} />
               </DialogTrigger>
-              <form>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>{SAVEREGEX_TITLE}</DialogTitle>
-                    <DialogDescription>
-                      {SAVEREGEX_SUBTITLE}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4">
-                    <div className="grid gap-3">
-                      <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
-                      <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
-                      {error && <span className="text-red-500">{error}</span>}
-                    </div>
-                    <div className="grid gap-3">
-                      <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
-                      <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
-                      {error && <span className="text-red-500">{error}</span>}
-                    </div>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>{SAVEREGEX_TITLE}</DialogTitle>
+                  <DialogDescription>
+                    {SAVEREGEX_SUBTITLE}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4">
+                  <div className="grid gap-3">
+                    <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
+                    <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
+                    {error && <span className="text-red-500">{error}</span>}
                   </div>
-                  <DialogFooter>
-                    <DialogClose asChild>
-                      <Button variant="outline">{BUTTON_CANCEL}</Button>
-                    </DialogClose>
-                    <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </form>
+                  <div className="grid gap-3">
+                    <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
+                    <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
+                    {error && <span className="text-red-500">{error}</span>}
+                  </div>
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">{BUTTON_CANCEL}</Button>
+                  </DialogClose>
+                  <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
+                </DialogFooter>
+              </DialogContent>
             </Dialog>
           </SidebarGroupAction>
         </SidebarGroup>
