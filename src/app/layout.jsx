@@ -14,12 +14,14 @@ export const metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning>
       <body>
         <SidebarProvider defaultOpen={false}>
-          <AppSidebar className="relative z-10"/>
+          <AppSidebar className="relative z-10" />
           <NuqsAdapter>
             <ThemeProvider
               attribute="class"
@@ -28,9 +30,11 @@ export default function RootLayout({ children }) {
               disableTransitionOnChange
             >
               {/* <SidebarTrigger /> */}
-              <div className='flex flex-1 justify-center items-center sm:absolute sm:left-[30%] md:left-[35%] z-0 overflow-hidden'>
-                {children}
-              </div>
+              <Suspense fallback={<>...</>}>
+                <div className='flex flex-1 justify-center items-center sm:absolute sm:left-[30%] md:left-[35%] z-0 overflow-hidden'>
+                  {children}
+                </div>
+              </Suspense>
               <Toaster closeButton richColors />
             </ThemeProvider>
           </NuqsAdapter>
