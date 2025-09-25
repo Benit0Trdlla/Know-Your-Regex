@@ -138,6 +138,11 @@ export function AppSidebar({ ...props }) {
                   </SidebarMenuItem>
                 </Collapsible>
               ))}
+              {savedRegex.length === 0 &&
+                <div className='text-center'>
+                  <span>{LANGUAGES[language].ALERT_MESSAGES.NO_REGEX_SAVED}</span>
+                </div>
+              }
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

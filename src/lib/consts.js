@@ -3,7 +3,8 @@ export const LANGUAGES = {
         ALERT_MESSAGES: {
             EMPTY_TITLE: 'Please enter the Regex title 😉',
             EMPTY_REGEX: 'The Regex cannot be empty.',
-            SUCCESS: 'Regex saved successfully.'
+            SUCCESS: 'Regex saved successfully.',
+            NO_REGEX_SAVED: 'No regex saved.'
         },
         SIDEBAR: {
             LABELTITLE: 'Your Regex'
@@ -23,7 +24,8 @@ export const LANGUAGES = {
         ALERT_MESSAGES: {
             EMPTY_TITLE: 'Ingresa el titulo de la Regex, por favor 😉',
             EMPTY_REGEX: 'La Regex no puede estar vacia',
-            SUCCESS: 'Regex guardada correctamente'
+            SUCCESS: 'Regex guardada correctamente',
+            NO_REGEX_SAVED: 'No hay regex guardadas'
         },
         SIDEBAR: {
             LABELTITLE: 'Tus Regex'
