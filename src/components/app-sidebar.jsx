@@ -4,6 +4,7 @@ import { useState } from "react"
 import { getLanguage } from '@/lib/language'
 import { LANGUAGES } from '@/lib/consts'
 import { saveRegex } from '@/lib/localstorage'
+import { getRegex } from '@/lib/localstorage'
 import { useHidratationSolution } from '@/hooks/useHidratationSolution'
 import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -46,6 +47,8 @@ export function AppSidebar({ ...props }) {
   const language = getLanguage();
   const isClient = useHidratationSolution();
 
+  const savedRegex = isClient && getRegex();
+
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
   const [error, setError] = useState('');
@@ -63,6 +66,7 @@ export function AppSidebar({ ...props }) {
 
     console.log('Regex saved successfully.');
   };
+
 
   return (
     <Sidebar {...props}>
@@ -114,42 +118,26 @@ export function AppSidebar({ ...props }) {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              <Collapsible defaultOpen className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10">
-                      <SidebarGroupLabel>Titulo de tu regex</SidebarGroupLabel>
-                      <Button variant="ghost" size="icon" className="size-8">
-                        <ChevronsUpDown />
-                        <span className="sr-only">Toggle</span>
-                      </Button>
-                    </div>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>Subitem 1</SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
-              <Collapsible className="group/collapsible">
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:bg-sidebar-foreground/10 hover:rounded-sm">
-                      <SidebarGroupLabel>Titulo de tu regex</SidebarGroupLabel>
-                      <Button variant="ghost" size="icon" className="size-8">
-                        <ChevronsUpDown />
-                        <span className="sr-only">Toggle</span>
-                      </Button>
-                    </div>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      <SidebarMenuSubItem>Subitem 1</SidebarMenuSubItem>
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </Collapsible>
+              {isClient && savedRegex.map((item) => (
+                <Collapsible className="group/collapsible" key={item.title}>
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10">
+                        <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+                        <Button variant="ghost" size="icon" className="size-8">
+                          <ChevronsUpDown />
+                          <span className="sr-only">Toggle</span>
+                        </Button>
+                      </div>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        <SidebarMenuSubItem>{item.regex}</SidebarMenuSubItem>
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
