@@ -51,20 +51,26 @@ export function AppSidebar({ ...props }) {
 
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
-  const [error, setError] = useState('');
+  const [alert, setAlert] = useState({});
+
+
 
   const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
   const handleAddRegex = () => {
-    const result = saveRegex(title, regex, language);
+    if (title.trim() === '') return setAlert({ emptyTitleMessage: LANGUAGES[language].ALERT_MESSAGES.EMPTY_TITLE });
+    if (regex.trim() === '') return setAlert({ emptyRegexMessage: LANGUAGES[language].ALERT_MESSAGES.EMPTY_REGEX });
 
-    if (result instanceof Error) setError(result.message);
-    else setError(LANGUAGES[language].ALERT_MESSAGES.SUCCESS);
+    saveRegex(title, regex);
+
+    // if (result instanceof Error) setError(result.message);
+    // else setError(LANGUAGES[language].ALERT_MESSAGES.SUCCESS);
 
     setTitle('');
     setRegex('');
 
     console.log('Regex saved successfully.');
+    setAlert({});
   };
 
 
@@ -96,12 +102,13 @@ export function AppSidebar({ ...props }) {
                   <div className="grid gap-3">
                     <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
                     <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
-                    {error && <span className="text-red-500">{error}</span>}
+                    {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{error.emptyTitleMessage}</span>}
+
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
                     <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
-                    {error && <span className="text-red-500">{error}</span>}
+                    {alert.emptyRegexMessage && <span className="text-red-500 text-center font-bold">{error.emptyRegexMessage}</span>}
                   </div>
                 </div>
                 <DialogFooter>
@@ -118,8 +125,8 @@ export function AppSidebar({ ...props }) {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {isClient && savedRegex.map((item) => (
-                <Collapsible className="group/collapsible" key={item.title}>
+              {isClient && savedRegex.map((item, index) => (
+                <Collapsible className="group/collapsible" key={index}>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10">
