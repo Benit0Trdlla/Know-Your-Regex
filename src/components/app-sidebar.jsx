@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { getLanguage } from '@/lib/language'
 import { LANGUAGES } from '@/lib/consts'
 import { saveRegex } from '@/lib/localstorage'
@@ -49,11 +49,10 @@ export function AppSidebar({ ...props }) {
 
   const savedRegex = isClient && getRegex();
 
+  const ref = useRef(null);
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
   const [alert, setAlert] = useState({});
-
-
 
   const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
@@ -63,14 +62,10 @@ export function AppSidebar({ ...props }) {
 
     saveRegex(title, regex);
 
-    // if (result instanceof Error) setError(result.message);
-    // else setError(LANGUAGES[language].ALERT_MESSAGES.SUCCESS);
-
     setTitle('');
     setRegex('');
 
-    console.log('Regex saved successfully.');
-    setAlert({});
+    ref.current?.click();
   };
 
 
@@ -102,18 +97,18 @@ export function AppSidebar({ ...props }) {
                   <div className="grid gap-3">
                     <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
                     <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
-                    {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{error.emptyTitleMessage}</span>}
+                    {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{alert.emptyTitleMessage}</span>}
 
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
                     <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
-                    {alert.emptyRegexMessage && <span className="text-red-500 text-center font-bold">{error.emptyRegexMessage}</span>}
+                    {alert.emptyRegexMessage && <span className="text-red-500 text-center font-bold">{alert.emptyRegexMessage}</span>}
                   </div>
                 </div>
                 <DialogFooter>
                   <DialogClose asChild>
-                    <Button variant="outline">{BUTTON_CANCEL}</Button>
+                    <Button variant="outline" ref={ref}>{alert.succesMessage ? BUTTON_CLOSE : BUTTON_CANCEL}</Button>
                   </DialogClose>
                   <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
                 </DialogFooter>
