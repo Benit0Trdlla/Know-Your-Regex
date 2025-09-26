@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState, useRef } from "react"
+import { toast } from 'sonner'
 import { getLanguage } from '@/lib/language'
 import { LANGUAGES } from '@/lib/consts'
 import { saveRegex } from '@/lib/localstorage'
@@ -64,6 +65,7 @@ export function AppSidebar({ ...props }) {
 
     setTitle('');
     setRegex('');
+    toast.success(LANGUAGES[language].ALERT_MESSAGES.SUCCESS);
 
     ref.current?.click();
   };
