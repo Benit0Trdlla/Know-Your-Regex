@@ -17,40 +17,40 @@
 
 ## Setup breve
 
-```bash
 # Clonar el repositorio
-[cd my-app](https://github.com/Benit0Trdlla/Know-Your-Regex.git)
+```bash
+git clone https://github.com/Benit0Trdlla/Know-Your-Regex.git
+cd Know-Your-Regex
 ```
-```bask
 # Instalar dependencias
+```bask
 npm install
+```
 # o
+```bash
 npm i
 ```
-```bash
 # Iniciar proyecto en local
+```bash
 npm run dev
 ```
 
-## Estructura del editor
+## Estructura del proyecto
 
-Se organiza en los siguientes componentes principales:
+El proyecto se organiza de la siguiente manera:
 
 - Api/Chat
     - Ruta en donde se utiliza la API de Google Gemini (gemini-2.0-flash) para encontrar o traducir tu Regex.
 
-- Toggle Switch: aquí es donde se selecciona en que modo va a funcionar la aplicacion, teniendo dos opcioes: 'Encontrar' y 'Traduccir'. Siendo por defecto 'Encontrar'. 
-    - Encontrar: Analiza la regex y explica de forma clara y concisa qué patrones de texto puede encontrar.
-    - Traducir: Toma la regex y explica en lenguaje natural, paso a paso, qué significa cada parte.
+- Toggle Switch: aquí es donde se selecciona en qué modo va a funcionar la aplicación, teniendo dos opciones: 'Encontrar' y 'Traducir'. Por defecto se selecciona 'Encontrar'. 
+    - Encontrar: analiza la regex y explica de forma clara y concisa qué patrones de texto puede identificar.
+    - Traducir: toma la regex y explica en lenguaje natural, paso a paso, qué significa cada parte.
     - Ambos modos:
-      1. Muestra nuevamente la regex destacada.
-      2. Una explicación detallada en lenguaje claro y sencillo.
-      3. Una lista en bullets con los componentes principales de la regex y qué significan.
+      1- Muestra nuevamente la regex destacada.
+      2- Una explicación detallada en lenguaje claro y sencillo.
+      3- Una lista en bullets con los componentes principales de la regex y qué significan.
       
 - App SideBar
-    - Lugar donde se puede guardar tus regex. Agrega en el locaslStorage la regex, con su titulo o breve descripcion.
-    - Posibilidad de copiarlas dando click sobre la misma, de una manera rapida.
+    - Espacio donde puedes guardar tus regex. Se almacenan en el localStorage con su título o una breve descripción.
+    - Posibilidad de copiarlas haciendo clic sobre ellas de manera rápida.
 
-## Deploy en Vercel
-
-Mirá el proyecto desplegado en [este enlace](#).
