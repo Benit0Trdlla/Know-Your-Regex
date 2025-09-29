@@ -1,8 +1,8 @@
-## Know YOur Regex
+# Know Your Regex
 
 ¿Necesitas utilizar una regex y no sabes cómo escribirla? ¿O tienes una expresión regular (regex) y quieres saber qué es lo que hace? ¡No te preocupes! Con la ayuda de Know Your Regex tus dudas se resolverán. La herramienta te muestra en detalle la regex que usaste o utilizarás y te ayudará a entender su funcionamiento. ¡Conocé tu regex ahora!
 
-## Tecnologías utilizadas
+# Tecnologías utilizadas
 
 - React
 - Next.js
@@ -15,27 +15,32 @@
 - AI SDK Vercel
 - Nuqs
 
-## Setup breve
+# Setup breve
 
-# Clonar el repositorio
+## Clonar el repositorio
 ```bash
 git clone https://github.com/Benit0Trdlla/Know-Your-Regex.git
 cd Know-Your-Regex
 ```
-# Instalar dependencias
+## Instalar dependencias
 ```bask
 npm install
 ```
-# o
+## o
 ```bash
 npm i
 ```
-# Iniciar proyecto en local
+## Iniciar proyecto en local
 ```bash
 npm run dev
 ```
 
-## Estructura del proyecto
+## Configurar .ENV
+```bash
+GOOGLE_GENERATIVE_AI_API_KEY= TU API KEY DE GOOGLE, EN ESTE CASO SE UTILIZA GEMINI-2.0-FLASH. 
+```
+
+# Estructura del proyecto
 
 El proyecto se organiza de la siguiente manera:
 
