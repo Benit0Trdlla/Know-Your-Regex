@@ -126,8 +126,12 @@ export function AppSidebar({ ...props }) {
                 <Collapsible className="group/collapsible" key={index}>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                      <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10">
-                        <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+                      <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10" title={item.title}>
+                        <SidebarGroupLabel>
+                          <div className="w-[120px] sm:w-[180px] truncate">
+                            {item.title}
+                          </div>
+                        </SidebarGroupLabel>
                         <Button variant="ghost" size="icon" className="size-8">
                           <ChevronsUpDown />
                           <span className="sr-only">Toggle</span>
