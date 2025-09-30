@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Know Your Regex
 
-## Getting Started
+¿Necesitas utilizar una regex y no sabes cómo escribirla? ¿O tienes una expresión regular (regex) y quieres saber qué es lo que hace? ¡No te preocupes! Con la ayuda de Know Your Regex tus dudas se resolverán. La herramienta te muestra en detalle la regex que usaste o utilizarás y te ayudará a entender su funcionamiento. ¡Conocé tu regex ahora!
 
-First, run the development server:
+# Tecnologías utilizadas
 
+- React
+- Next.js
+- JavaScript
+- Tailwind
+- Radix UI
+- Lucide React
+- Sooner
+- Motion
+- AI SDK Vercel
+- Nuqs
+
+# Setup breve
+
+## Clonar el repositorio
+```bash
+git clone https://github.com/Benit0Trdlla/Know-Your-Regex.git
+cd Know-Your-Regex
+```
+## Instalar dependencias
+```bask
+npm install
+```
+## o
+```bash
+npm i
+```
+## Iniciar proyecto en local
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configurar .ENV
+```bash
+GOOGLE_GENERATIVE_AI_API_KEY= TU API KEY DE GOOGLE, EN ESTE CASO SE UTILIZA GEMINI-2.0-FLASH. 
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Estructura del proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+El proyecto se organiza de la siguiente manera:
 
-## Learn More
+- Api/Chat
+    - Ruta en donde se utiliza la API de Google Gemini (gemini-2.0-flash) para encontrar o traducir tu Regex.
 
-To learn more about Next.js, take a look at the following resources:
+- Toggle Switch: aquí es donde se selecciona en qué modo va a funcionar la aplicación, teniendo dos opciones: 'Encontrar' y 'Traducir'. Por defecto se selecciona 'Encontrar'. 
+    - Encontrar: analiza la regex y explica de forma clara y concisa qué patrones de texto puede identificar.
+    - Traducir: toma la regex y explica en lenguaje natural, paso a paso, qué significa cada parte.
+    - Ambos modos:
+      1- Muestra nuevamente la regex destacada.
+      2- Una explicación detallada en lenguaje claro y sencillo.
+      3- Una lista en bullets con los componentes principales de la regex y qué significan.
+      
+- App SideBar
+    - Espacio donde puedes guardar tus regex. Se almacenan en el localStorage con su título o una breve descripción.
+    - Posibilidad de copiarlas haciendo clic sobre ellas de manera rápida.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
