@@ -20,7 +20,7 @@ export async function POST(req) {
 
   const result = streamText({
     model: google('gemini-2.0-flash'),
-    system: `El idioma de preferencia para tu respuesta debe ser en lenguaje ${language === 'ES' ? 'español' : 'inglés'}. El usuario podra cambiarlo luego. ${type === 'encontrar' || type === 'find' ? findPrompt : translatePrompt}`,
+    system: `El idioma de preferencia para tu respuesta debe ser en lenguaje ${language === 'ES' ? 'español' : 'inglés'}. El usuario podra cambiarlo luego, si así lo desea. ${type === 'encontrar' || type === 'find' ? findPrompt : translatePrompt}`,
     messages: convertToCoreMessages(messages),
   });
 

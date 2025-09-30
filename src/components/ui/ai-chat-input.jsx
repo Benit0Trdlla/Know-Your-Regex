@@ -5,19 +5,10 @@ import { Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ToggleSwitch } from "./toggle-switch";
 import { getLanguage } from "@/lib/language";
-import { useHidratationSolution } from "@/hooks/useHidratationSolution";
-
+import { AI_INPUT_PLACEHOLDERS } from "@/lib/consts";
 
 const AIChatInput = ({ input, onChange, status }) => {
     let language = getLanguage();
-
-    const isClient = useHidratationSolution()
-
-    const PLACEHOLDERS = [
-        `${isClient && language === 'ES' ? 'Escribe tu regex' : 'Write your regex'}`,
-        `${isClient && language === 'ES' ? 'Traduce tu regex' : 'Translate your regex'}`,
-    ];
-    
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
     const [isActive, setIsActive] = useState(false);
@@ -30,7 +21,7 @@ const AIChatInput = ({ input, onChange, status }) => {
         const interval = setInterval(() => {
             setShowPlaceholder(false);
             setTimeout(() => {
-                setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDERS.length);
+                setPlaceholderIndex((prev) => (prev + 1) % AI_INPUT_PLACEHOLDERS[language].length);
                 setShowPlaceholder(true);
             }, 400);
         }, 3000);
@@ -117,6 +108,7 @@ const AIChatInput = ({ input, onChange, status }) => {
                         <div className="relative flex-1">
                             <input
                                 type="text"
+                                inputMode="text"
                                 value={input}
                                 onChange={onChange}
                                 className="flex-1 border-0 outline-0 rounded-md py-2 text-base bg-transparent w-full font-normal"
@@ -141,7 +133,7 @@ const AIChatInput = ({ input, onChange, status }) => {
                                             animate="animate"
                                             exit="exit"
                                         >
-                                            {PLACEHOLDERS[placeholderIndex]
+                                            {AI_INPUT_PLACEHOLDERS[language][placeholderIndex]
                                                 .split("")
                                                 .map((char, i) => (
                                                     <motion.span

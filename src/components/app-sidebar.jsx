@@ -98,13 +98,13 @@ export function AppSidebar({ ...props }) {
                 <div className="grid gap-4">
                   <div className="grid gap-3">
                     <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
-                    <Input id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
+                    <Input inputMode="text" id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
                     {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{alert.emptyTitleMessage}</span>}
 
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
-                    <Input id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
+                    <Input inputMode="text" id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
                     {alert.emptyRegexMessage && <span className="text-red-500 text-center font-bold">{alert.emptyRegexMessage}</span>}
                   </div>
                 </div>

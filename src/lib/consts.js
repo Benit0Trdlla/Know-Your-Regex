@@ -42,3 +42,17 @@ export const LANGUAGES = {
         }
     }
 }
+
+
+export const AI_INPUT_PLACEHOLDERS = {
+    EN: [
+        'Write your regex',
+        'Translate your regex',
+        'Help me with my regex' 
+    ],
+    ES: [
+        'Escribe tu regex',
+        'Traduce tu regex',
+        'Ayudame con mi regex'
+    ]
+}
