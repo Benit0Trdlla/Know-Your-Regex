@@ -43,12 +43,17 @@ export const LANGUAGES = {
     }
 }
 
+export const PROMPTS = {
+    FIND_PROMPT: "Actúa como un experto en expresiones regulares. Analiza la siguiente regex y explica de forma clara y concisa qué patrones de texto puede encontrar.Tu respuesta debe tener:1. Mostrar nuevamente la regex destacada. 2. Una breve explicación en lenguaje sencillo sobre lo que busca. 3. Una lista en bullets con los componentes principales de la regex y qué significan.",
+    TRANSLATE_PROMPT: "Actúa como un traductor de expresiones regulares. Tu tarea es tomar la siguiente regex y explicar en lenguaje natural, paso a paso, qué significa cada parte.Tu respuesta debe incluir: 1. Mostrar nuevamente la regex destacada. 2. Una explicación detallada en lenguaje claro y sencillo. 3. Desglose línea por línea o símbolo por símbolo en bullets, traduciendo cada elemento de forma entendible."
+
+}
 
 export const AI_INPUT_PLACEHOLDERS = {
     EN: [
         'Write your regex',
         'Translate your regex',
-        'Help me with my regex' 
+        'Help me with my regex'
     ],
     ES: [
         'Escribe tu regex',
