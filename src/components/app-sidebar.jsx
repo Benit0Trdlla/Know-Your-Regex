@@ -45,8 +45,8 @@ import {
 } from "@/components/ui/dialog"
 
 export function AppSidebar({ ...props }) {
-  const language = getLanguage();
   const isClient = useHidratationSolution();
+  const language = isClient && getLanguage();
 
   const savedRegex = isClient && getRegex();
 

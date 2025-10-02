@@ -4,8 +4,8 @@ import { getLanguage } from '@/lib/language';
 import { useHidratationSolution } from '@/hooks/useHidratationSolution';
 
 function ToggleSwitch() {
-    const language = getLanguage();
     const isClient = useHidratationSolution()
+    const language = isClient && getLanguage();
     
     const [activeOption, setActiveOption] = useQueryState("type", {
         defaultValue: '',
