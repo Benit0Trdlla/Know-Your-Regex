@@ -2,7 +2,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from 'sonner'
 import { Suspense } from 'react';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import "./globals.css";
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="es" suppressHydrationWarning>
       <body>
         <SidebarProvider defaultOpen={false}>
-          <AppSidebar className="relative z-10" />
+          <AppSidebar className="relative z-10" /> 
           <NuqsAdapter>
             <ThemeProvider
               attribute="class"
@@ -29,8 +29,7 @@ export default function RootLayout({ children }) {
               enableSystem
               disableTransitionOnChange
             >
-              {/* <SidebarTrigger /> */}
-              <Suspense fallback={<>...</>}>
+              <Suspense fallback={<>Loading...</>}>
                 <div className='flex flex-1 justify-center items-center sm:absolute sm:left-[30%] md:left-[35%] z-0 overflow-hidden'>
                   {children}
                 </div>

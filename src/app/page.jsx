@@ -13,7 +13,7 @@ export default function Home() {
 
   const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     onError: () => toast.error('Su tarifa se ha agotado. Puede volver a intentarlo más tarde.'),
-    body: { 
+    body: {
       type: activeOption ? activeOption : 'encontrar',
       language
     },
@@ -27,7 +27,6 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen my-auto items-center">
       <Navbar />
-      {/* {status} */}
       <div className="w-full max-w-md pb-10 mt-6 mx-auto stretch">
         <AIChat messages={messages} />
         <form onSubmit={handleSubmit}>

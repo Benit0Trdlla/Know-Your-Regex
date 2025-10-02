@@ -7,16 +7,14 @@ export const maxDuration = 30;
 
 export async function POST(req) {
   const body = await req.json();
-  console.log(body);
   const { messages, type, language } = body;
 
-  console.log("Tipo seleccionado:", type);
-  console.log("Tipo seleccionado:", language);
-
+  const FIND_PROMPT = PROMPTS?.FIND_PROMPT;
+  const TRANSLATE_PROMPT = PROMPTS?.TRANSLATE_PROMPT;
 
   const result = streamText({
     model: google('gemini-2.0-flash'),
-    system: `El idioma de preferencia para tu respuesta debe ser en lenguaje ${language === 'ES' ? 'español' : 'inglés'}. El usuario podra cambiarlo luego, si así lo desea. ${type === 'encontrar' || type === 'find' ? PROMPTS.FIND_PROMPT : PROMPTS.TRANSLATE_PROMPT}`,
+    system: `El idioma de preferencia para tu respuesta debe ser en lenguaje ${language === 'ES' ? 'español' : 'inglés'}. El usuario podra cambiarlo luego, si así lo desea. ${type === 'encontrar' || type === 'find' ? FIND_PROMPT : TRANSLATE_PROMPT}`,
     messages: convertToCoreMessages(messages),
   });
 

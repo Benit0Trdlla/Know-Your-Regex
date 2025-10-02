@@ -53,7 +53,10 @@ export function AppSidebar({ ...props }) {
   const ref = useRef(null);
   const [title, setTitle] = useState('');
   const [regex, setRegex] = useState('');
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({
+    emptyTitleMessage: '',
+    emptyRegexMessage: '',
+  });
 
   // const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 

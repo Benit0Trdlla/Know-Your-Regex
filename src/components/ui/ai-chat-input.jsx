@@ -5,9 +5,11 @@ import { Send } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ToggleSwitch } from "./toggle-switch";
 import { getLanguage } from "@/lib/language";
+import { useHidratationSolution } from "@/hooks/useHidratationSolution";
 import { AI_INPUT_PLACEHOLDERS } from "@/lib/consts";
 
 const AIChatInput = ({ input, onChange, status }) => {
+    const isClient = useHidratationSolution();
     let language = getLanguage();
     const [placeholderIndex, setPlaceholderIndex] = useState(0);
     const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -21,7 +23,7 @@ const AIChatInput = ({ input, onChange, status }) => {
         const interval = setInterval(() => {
             setShowPlaceholder(false);
             setTimeout(() => {
-                setPlaceholderIndex((prev) => (prev + 1) % AI_INPUT_PLACEHOLDERS[language].length);
+                setPlaceholderIndex((prev) => (prev + 1) % AI_INPUT_PLACEHOLDERS[language]?.length);
                 setShowPlaceholder(true);
             }, 400);
         }, 3000);
@@ -133,7 +135,7 @@ const AIChatInput = ({ input, onChange, status }) => {
                                             animate="animate"
                                             exit="exit"
                                         >
-                                            {AI_INPUT_PLACEHOLDERS[language][placeholderIndex]
+                                            {isClient && AI_INPUT_PLACEHOLDERS[language][placeholderIndex]
                                                 .split("")
                                                 .map((char, i) => (
                                                     <motion.span
