@@ -55,17 +55,17 @@ export function AppSidebar({ ...props }) {
   const [regex, setRegex] = useState('');
   const [alert, setAlert] = useState({});
 
-  const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
+  // const { SAVEREGEX_TITLE, SAVEREGEX_SUBTITLE, LABELINPUT_TITLE, PLACEHOLDERINPUT_TITLE, LABELINPUT_REGEX, PLACEHOLDERINPUT_REGEX, BUTTON_CANCEL, BUTTON_SAVE } = LANGUAGES[language].MODAL_ADDREGEX;
 
   const handleAddRegex = () => {
-    if (title.trim() === '') return setAlert({ emptyTitleMessage: LANGUAGES[language].ALERT_MESSAGES.EMPTY_TITLE });
-    if (regex.trim() === '') return setAlert({ emptyRegexMessage: LANGUAGES[language].ALERT_MESSAGES.EMPTY_REGEX });
+    if (title.trim() === '') return setAlert({ emptyTitleMessage: LANGUAGES[language]?.ALERT_MESSAGES?.EMPTY_TITLE });
+    if (regex.trim() === '') return setAlert({ emptyRegexMessage: LANGUAGES[language]?.ALERT_MESSAGES?.EMPTY_REGEX });
 
     saveRegex(title, regex);
 
     setTitle('');
     setRegex('');
-    toast.success(LANGUAGES[language].ALERT_MESSAGES.SUCCESS);
+    toast.success(LANGUAGES[language]?.ALERT_MESSAGES?.SUCCESS);
 
     ref.current?.click();
   };
@@ -77,7 +77,7 @@ export function AppSidebar({ ...props }) {
 
   const handleCopyRegex = (regex) => {
     navigator.clipboard.writeText(regex)
-    toast.success(LANGUAGES[language].ALERT_MESSAGES.COPY_SUCCESS);
+    toast.success(LANGUAGES[language]?.ALERT_MESSAGES?.COPY_SUCCESS);
   };
 
 
@@ -92,7 +92,7 @@ export function AppSidebar({ ...props }) {
       <hr className="w-11/12 mx-auto" />
       <SidebarContent>
         <SidebarGroup className="relative flex w-full min-w-0 flex-row items-center justify-between p-2">
-          <SidebarGroupLabel>{isClient && LANGUAGES[language].SIDEBAR.LABELTITLE}</SidebarGroupLabel>
+          <SidebarGroupLabel>{isClient && LANGUAGES[language]?.SIDEBAR?.LABELTITLE}</SidebarGroupLabel>
           <SidebarGroupAction asChild>
             <Dialog>
               <DialogTrigger asChild className="hover:cursor-pointer">
@@ -100,29 +100,29 @@ export function AppSidebar({ ...props }) {
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                  <DialogTitle>{SAVEREGEX_TITLE}</DialogTitle>
+                  <DialogTitle>{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.SAVEREGEX_TITLE}</DialogTitle>
                   <DialogDescription>
-                    {SAVEREGEX_SUBTITLE}
+                    {isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.SAVEREGEX_SUBTITLE}
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4">
                   <div className="grid gap-3">
-                    <Label htmlFor="title-1">{LABELINPUT_TITLE}</Label>
-                    <Input inputMode="text" id="title-1" name="title" placeholder={PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
+                    <Label htmlFor="title-1">{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.LABELINPUT_TITLE}</Label>
+                    <Input inputMode="text" id="title-1" name="title" placeholder={isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
                     {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{alert.emptyTitleMessage}</span>}
 
                   </div>
                   <div className="grid gap-3">
-                    <Label htmlFor="regex-1">{LABELINPUT_REGEX}</Label>
-                    <Input inputMode="text" id="regex-1" name="regex" placeholder={PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
+                    <Label htmlFor="regex-1">{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.LABELINPUT_REGEX}</Label>
+                    <Input inputMode="text" id="regex-1" name="regex" placeholder={isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.PLACEHOLDERINPUT_REGEX} onChange={(e) => setRegex(e.target.value)} value={regex} />
                     {alert.emptyRegexMessage && <span className="text-red-500 text-center font-bold">{alert.emptyRegexMessage}</span>}
                   </div>
                 </div>
                 <DialogFooter>
                   <DialogClose asChild>
-                    <Button variant="outline" ref={ref} onClick={handleCancel}>{BUTTON_CANCEL}</Button>
+                    <Button variant="outline" ref={ref} onClick={handleCancel}>{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.BUTTON_CANCEL}</Button>
                   </DialogClose>
-                  <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
+                  <Button type="submit" onClick={handleAddRegex}>{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.BUTTON_SAVE}</Button>
                 </DialogFooter>
               </DialogContent>
             </Dialog>
@@ -162,7 +162,7 @@ export function AppSidebar({ ...props }) {
               ))}
               {savedRegex.length === 0 &&
                 <div className='text-center'>
-                  <span>{LANGUAGES[language].ALERT_MESSAGES.NO_REGEX_SAVED}</span>
+                  <span>{isClient && LANGUAGES[language]?.ALERT_MESSAGES?.NO_REGEX_SAVED}</span>
                 </div>
               }
             </SidebarMenu>
