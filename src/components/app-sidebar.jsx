@@ -70,6 +70,16 @@ export function AppSidebar({ ...props }) {
     ref.current?.click();
   };
 
+  const handleCancel = () => {
+    setTitle('');
+    setRegex('');
+  };
+
+  const handleCopyRegex = (regex) => {
+    navigator.clipboard.writeText(regex)
+    toast.success(LANGUAGES[language].ALERT_MESSAGES.COPY_SUCCESS);
+  };
+
 
   return (
     <Sidebar {...props}>
@@ -110,7 +120,7 @@ export function AppSidebar({ ...props }) {
                 </div>
                 <DialogFooter>
                   <DialogClose asChild>
-                    <Button variant="outline" ref={ref}>{alert.succesMessage ? BUTTON_CLOSE : BUTTON_CANCEL}</Button>
+                    <Button variant="outline" ref={ref} onClick={handleCancel}>{BUTTON_CANCEL}</Button>
                   </DialogClose>
                   <Button type="submit" onClick={handleAddRegex}>{BUTTON_SAVE}</Button>
                 </DialogFooter>
@@ -140,7 +150,11 @@ export function AppSidebar({ ...props }) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        <SidebarMenuSubItem>{item.regex}</SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                          <button onClick={() => handleCopyRegex(item.regex)}>
+                            <span>{item.regex}</span>
+                          </button>
+                        </SidebarMenuSubItem>
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>
