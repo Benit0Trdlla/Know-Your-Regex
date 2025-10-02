@@ -4,13 +4,9 @@ export const setLanguage = (lang) => {
 }
 
 export const getLanguage = () => {
-    let language = '';
+    let language
     if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
-        const language = localStorage.getItem('language');
-        if (language === 'undefined' || language === 'null') {
-            setLanguage('ES');
-            return language
-        }
+        return language = localStorage.getItem('language');
     }
-    return language ? language : 'ES';
+    return language = 'ES'
 }

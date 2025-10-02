@@ -8,6 +8,8 @@ import { getLanguage } from "@/lib/language";
 import { useHidratationSolution } from "@/hooks/useHidratationSolution";
 import { AI_INPUT_PLACEHOLDERS } from "@/lib/consts";
 
+
+
 const AIChatInput = ({ input, onChange, status }) => {
     const isClient = useHidratationSolution();
     let language = isClient && getLanguage();
@@ -16,6 +18,9 @@ const AIChatInput = ({ input, onChange, status }) => {
     const [isActive, setIsActive] = useState(false);
     const wrapperRef = useRef(null);
 
+    const PLACEHOLDER = AI_INPUT_PLACEHOLDERS[getLanguage()];
+    console.log('PLACEHOLDER 4KT', PLACEHOLDER);
+    
     // Cycle placeholder text when input is inactive
     useEffect(() => {
         if (isActive || input) return;
@@ -23,7 +28,7 @@ const AIChatInput = ({ input, onChange, status }) => {
         const interval = setInterval(() => {
             setShowPlaceholder(false);
             setTimeout(() => {
-                // setPlaceholderIndex((prev) => (prev + 1) % AI_INPUT_PLACEHOLDERS[language].length);
+                setPlaceholderIndex((prev) => (prev + 1) % PLACEHOLDER.length);
                 setShowPlaceholder(true);
             }, 400);
         }, 3000);
@@ -120,7 +125,34 @@ const AIChatInput = ({ input, onChange, status }) => {
                             />
                             <div className="absolute left-0 top-0 w-full h-full pointer-events-none flex items-center px-3 py-2">
                                 <AnimatePresence mode="wait">
-
+                                    {showPlaceholder && !isActive && !input && (
+                                        <motion.span
+                                            key={placeholderIndex}
+                                            className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 select-none pointer-events-none"
+                                            style={{
+                                                whiteSpace: "nowrap",
+                                                overflow: "hidden",
+                                                textOverflow: "ellipsis",
+                                                zIndex: 0,
+                                            }}
+                                            variants={placeholderContainerVariants}
+                                            initial="initial"
+                                            animate="animate"
+                                            exit="exit"
+                                        >
+                                            {isClient && PLACEHOLDER[placeholderIndex]
+                                                .split("")
+                                                .map((char, i) => (
+                                                    <motion.span
+                                                        key={i}
+                                                        variants={letterVariants}
+                                                        style={{ display: "inline-block" }}
+                                                    >
+                                                        {char === " " ? "\u00A0" : char}
+                                                    </motion.span>
+                                                ))}
+                                        </motion.span>
+                                    )}
                                 </AnimatePresence>
                             </div>
                         </div>
