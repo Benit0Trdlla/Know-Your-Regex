@@ -152,7 +152,7 @@ export function AppSidebar({ ...props }) {
                         </SidebarGroupLabel>
                         <div className='flex'>
                           <Button variant="ghost" size="icon" className="size-2 mr-5 hover:cursor-pointer" onClick={(e) => { e.stopPropagation(); handleDeleteRegex(index) }}>
-                            <TrashIcon className='text-red-400'/>
+                            <TrashIcon className='text-red-400' />
                           </Button>
                           <Button variant="ghost" size="icon" className="size-2 mr-1 hover:cursor-pointer">
                             <ChevronsUpDown />
@@ -163,10 +163,11 @@ export function AppSidebar({ ...props }) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        <SidebarMenuSubItem>
-                          <button onClick={() => handleCopyRegex(item.regex)}>
-                            <span>{item.regex}</span>
-                          </button>
+                        <SidebarMenuSubItem className={"flex items-center justify-between my-2 hover:rounded-sm hover:bg-sidebar-foreground/10 hover:cursor-pointer"}>
+                          <span>{item.regex}</span>
+                          <Button variant="ghost" size="icon" className="size-2 hover:cursor-pointer" onClick={() => handleCopyRegex(item.regex)}>
+                            <Clipboard />
+                          </Button>
                         </SidebarMenuSubItem>
                       </SidebarMenuSub>
                     </CollapsibleContent>
