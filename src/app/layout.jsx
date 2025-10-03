@@ -2,6 +2,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from 'sonner'
 import { Suspense } from 'react';
+import { Analytics } from "@vercel/analytics/next"
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import "./globals.css";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
             </ThemeProvider>
           </NuqsAdapter>
         </SidebarProvider>
+        <Analytics />
       </body>
     </html>
   );
