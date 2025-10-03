@@ -1,13 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { useState, useRef } from "react"
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { getLanguage } from '@/lib/language'
 import { LANGUAGES } from '@/lib/consts'
-import { saveRegex } from '@/lib/localstorage'
-import { getRegex } from '@/lib/localstorage'
+import { saveRegex, getRegex, deleteRegex } from '@/lib/localstorage'
 import { useHidratationSolution } from '@/hooks/useHidratationSolution'
-import { Plus, Linkedin, Github, Globe, ChevronsUpDown } from "lucide-react"
+import { Plus, Linkedin, Github, Globe, ChevronsUpDown, TrashIcon, Clipboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -45,6 +45,7 @@ import {
 } from "@/components/ui/dialog"
 
 export function AppSidebar({ ...props }) {
+  const router = useRouter()
   const isClient = useHidratationSolution();
   const language = isClient && getLanguage();
 
@@ -83,6 +84,11 @@ export function AppSidebar({ ...props }) {
     toast.success(LANGUAGES[language]?.ALERT_MESSAGES?.COPY_SUCCESS);
   };
 
+  const handleDeleteRegex = (regexIndex) => {
+    deleteRegex(regexIndex);
+    router.refresh()
+    toast.info(LANGUAGES[language]?.ALERT_MESSAGES?.DELETE_REGEX);
+  };
 
   return (
     <Sidebar {...props}>
@@ -113,7 +119,6 @@ export function AppSidebar({ ...props }) {
                     <Label htmlFor="title-1">{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.LABELINPUT_TITLE}</Label>
                     <Input inputMode="text" id="title-1" name="title" placeholder={isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.PLACEHOLDERINPUT_TITLE} onChange={(e) => setTitle(e.target.value)} value={title} />
                     {alert.emptyTitleMessage && <span className="text-red-500 text-center font-bold">{alert.emptyTitleMessage}</span>}
-
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="regex-1">{isClient && LANGUAGES[language]?.MODAL_ADDREGEX?.LABELINPUT_REGEX}</Label>
@@ -139,16 +144,21 @@ export function AppSidebar({ ...props }) {
                 <Collapsible className="group/collapsible" key={index}>
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                      <div className="flex items-center justify-between gap-4 border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10" title={item.title}>
+                      <div className="flex items-center justify-between border-b border-sidebar-foreground/10 my-2 hover:rounded-sm hover:bg-sidebar-foreground/10 hover:cursor-pointer" title={item.title}>
                         <SidebarGroupLabel>
                           <div className="w-[120px] sm:w-[180px] truncate">
                             {item.title}
                           </div>
                         </SidebarGroupLabel>
-                        <Button variant="ghost" size="icon" className="size-8">
-                          <ChevronsUpDown />
-                          <span className="sr-only">Toggle</span>
-                        </Button>
+                        <div className='flex'>
+                          <Button variant="ghost" size="icon" className="size-2 mr-5 hover:cursor-pointer" onClick={(e) => { e.stopPropagation(); handleDeleteRegex(index) }}>
+                            <TrashIcon className='text-red-400'/>
+                          </Button>
+                          <Button variant="ghost" size="icon" className="size-2 mr-1 hover:cursor-pointer">
+                            <ChevronsUpDown />
+                            <span className="sr-only">Toggle</span>
+                          </Button>
+                        </div>
                       </div>
                     </CollapsibleTrigger>
                     <CollapsibleContent>

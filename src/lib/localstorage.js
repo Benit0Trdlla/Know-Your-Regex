@@ -18,3 +18,9 @@ export const getRegex = () => {
 
     return savedRegex
 };
+
+export const deleteRegex = (regexIndex) => {
+    const savedRegex = getRegex();
+    savedRegex.splice(regexIndex, 1);
+    localStorage.setItem('Regexs', JSON.stringify(savedRegex));
+}

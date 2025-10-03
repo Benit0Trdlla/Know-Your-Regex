@@ -5,7 +5,8 @@ export const LANGUAGES = {
             EMPTY_REGEX: 'The Regex cannot be empty.',
             SUCCESS: 'Regex saved successfully.',
             NO_REGEX_SAVED: 'No regex saved.',
-            COPY_SUCCESS: 'Regex copied successfully.'
+            COPY_SUCCESS: 'Regex copied successfully.',
+            DELETE_REGEX: 'Regex deleted successfully.'
         },
         SIDEBAR: {
             LABELTITLE: 'Your Regex'
@@ -27,7 +28,8 @@ export const LANGUAGES = {
             EMPTY_REGEX: 'La Regex no puede estar vacia',
             SUCCESS: 'Regex guardada correctamente',
             NO_REGEX_SAVED: 'No hay regex guardadas',
-            COPY_SUCCESS: 'Regex copiada correctamente'
+            COPY_SUCCESS: 'Regex copiada correctamente',
+            DELETE_REGEX: 'Regex eliminada correctamente'
         },
         SIDEBAR: {
             LABELTITLE: 'Tus Regex'
