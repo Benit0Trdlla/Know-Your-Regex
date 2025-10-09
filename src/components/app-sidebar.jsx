@@ -187,7 +187,7 @@ export function AppSidebar({ ...props }) {
       <SidebarFooter className="mb-5">
         <SidebarMenu>
           <SidebarMenuItem>
-            <div className="flex row gap-3 align-center justify-around">
+            {/* <div className="flex row gap-3 align-center justify-around">
               <Link href="https://benito-tridella-dolce.vercel.app/" target='_blank'>
                 <Globe />
               </Link>
@@ -197,7 +197,13 @@ export function AppSidebar({ ...props }) {
               <Link href={"https://github.com/Benit0Trdlla"} target='_blank'>
                 <Github />
               </Link>
-            </div>
+            </div> */}
+            <p className='text-center'>
+              {isClient && LANGUAGES[language]?.FOOTER_TEXT?.PARAGRAPH}
+            </p>
+            <p className='text-center'>
+              <a className='underline hover:decoration-gray-500' href="https://docs.google.com/forms/d/e/1FAIpQLSegXLIad_lDcBYaMBw9YCottr_qUC74kf5DMdq__wiQGkuCJg/viewform?usp=dialog" target="_blank">{isClient && LANGUAGES[language]?.FOOTER_TEXT?.TEXT_FORM}</a>
+            </p>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

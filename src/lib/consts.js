@@ -20,6 +20,10 @@ export const LANGUAGES = {
             PLACEHOLDERINPUT_REGEX: '^\d{2}-\d{2}-\d{4}$',
             BUTTON_CANCEL: 'Cancel',
             BUTTON_SAVE: 'Save'
+        },
+        FOOTER_TEXT: {
+            PARAGRAPH: 'I would really like to receive your feedback, you can do it here ⬇️',
+            TEXT_FORM: 'Form'
         }
     },
     ES: {
@@ -43,6 +47,10 @@ export const LANGUAGES = {
             PLACEHOLDERINPUT_REGEX: '^\d{2}-\d{2}-\d{4}$',
             BUTTON_CANCEL: 'Cancelar',
             BUTTON_SAVE: 'Guardar'
+        },
+        FOOTER_TEXT: {
+            PARAGRAPH: 'Me serviría muchísimo recibir tu feedback, puedes hacerlo en este link ⬇️',
+            TEXT_FORM: 'Formulario'
         }
     }
 }

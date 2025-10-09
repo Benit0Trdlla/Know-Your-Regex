@@ -12,7 +12,7 @@ export default function Home() {
   const isClient = useHidratationSolution();
   const [activeOption] = useQueryState("type");
   const language = getLanguage();
-  console.log('HOME COMP', language);
+  // console.log('HOME COMP', language);
 
   const { messages, input, handleInputChange, handleSubmit, status } = useChat({
     onError: () => toast.error('Su tarifa se ha agotado. Puede volver a intentarlo más tarde.'),

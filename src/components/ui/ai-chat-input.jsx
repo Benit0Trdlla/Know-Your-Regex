@@ -8,8 +8,6 @@ import { getLanguage } from "@/lib/language";
 import { useHidratationSolution } from "@/hooks/useHidratationSolution";
 import { AI_INPUT_PLACEHOLDERS } from "@/lib/consts";
 
-
-
 const AIChatInput = ({ input, onChange, status }) => {
     const isClient = useHidratationSolution();
     let language = isClient && getLanguage();
@@ -19,7 +17,7 @@ const AIChatInput = ({ input, onChange, status }) => {
     const wrapperRef = useRef(null);
 
     const PLACEHOLDER = AI_INPUT_PLACEHOLDERS[getLanguage()];
-    console.log('PLACEHOLDER 4KT', PLACEHOLDER);
+    // console.log('PLACEHOLDER 4KT', PLACEHOLDER);
     
     // Cycle placeholder text when input is inactive
     useEffect(() => {
